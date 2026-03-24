@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    h3 { 
+      color: #1877f2;
+      margin-top: 0;
+    }
+    .status { 
+      padding: 12px;
+      background: #e7f3ff;
+      border-radius: 5px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .platform-info {
+      margin-top: 12px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    .platform {
+      margin-bottom: 8px;
+    }
+    .platform-name {
+      font-weight: bold;
+      color: #333;
+    }
+    .platform-pages {
+      font-size: 11px;
+      color: #666;
+      margin-top: 3px;
+    }
+    .stats {
+      margin-top: 12px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 3px solid #1877f2;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h3>📱 Company Post Liker</h3>
+  
+  <div class="status">
+    ✅ Extension is active and running!<br><br>
+    Checks for new posts every 30 minutes automatically.
+  </div>
+
+  <div class="platform-info">
+    <div class="platform">
+      <div class="platform-name">📘 Facebook</div>
+      <div class="platform-pages">Pages: zaavia.net, 61573834194646</div>
+    </div>
+    <div class="platform">
+      <div class="platform-name">💼 LinkedIn</div>
+      <div class="platform-pages">Companies: saerintechllc, zaavia</div>
+    </div>
+    <div class="platform">
+      <div class="platform-name">📷 Instagram</div>
+      <div class="platform-pages">Accounts: zaavia, saerintech</div>
+    </div>
+  </div>
+
+  <div class="stats" id="stats">
+    <!-- Last liked info will be inserted here -->
+  </div>
+
+  <script>
+    chrome.storage.local.get(['lastLiked'], (result) => {
+      const statsDiv = document.getElementById('stats');
+      if (result.lastLiked) {
+        const likedDate = new Date(result.lastLiked);
+        statsDiv.innerHTML = 
+          `⏱️ Last liked:<br>${likedDate.toLocaleString()}`;
+      } else {
+        statsDiv.innerHTML = '⏱️ No posts liked yet';
+      }
+    });
+  </script>
+</body>
+</html>

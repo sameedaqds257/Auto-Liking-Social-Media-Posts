@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Company Post Liker",
+  "version": "1.0",
+  "description": "Automatically likes company posts on Facebook, LinkedIn, and Instagram",
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.facebook.com/*",
+    "https://www.linkedin.com/*",
+    "https://www.instagram.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.facebook.com/*",
+        "https://www.linkedin.com/*",
+        "https://www.instagram.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
