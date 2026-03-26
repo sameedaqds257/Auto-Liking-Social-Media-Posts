@@ -2,9 +2,11 @@
 const FB_PAGES = ["61573834194646", "zaavia.net"];
 const LI_PAGES = ["saerintechllc", "zaavia"];
 const CHECK_INTERVAL = 120; // in minutes
-const RELOAD_INTERVAL = 120; // reload every 5 minutes
+const RELOAD_INTERVAL = 120; // reload every 120 minutes
 
 let lastReloadTimes = {}; // Track reload times per tab
+let customFbPages = FB_PAGES;
+let customLiPages = LI_PAGES;
 
 // Set up alarm to check for new posts every X minutes
 chrome.runtime.onInstalled.addListener(() => {
@@ -12,12 +14,44 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.alarms.create('reloadTabs', { periodInMinutes: RELOAD_INTERVAL });
   console.log('Company Post Liker extension installed');
   
-  // Store config in storage for content scripts to access
+  // Load custom pages from storage if available
+  chrome.storage.local.get(['fbPages', 'liPages'], (result) => {
+    if (result.fbPages) {
+      customFbPages = Array.isArray(result.fbPages) 
+        ? result.fbPages 
+        : result.fbPages.split(',').map(s => s.trim());
+    }
+    if (result.liPages) {
+      customLiPages = Array.isArray(result.liPages) 
+        ? result.liPages 
+        : result.liPages.split(',').map(s => s.trim());
+    }
+  });
+  
+  // Store default config in storage for content scripts to access
   chrome.storage.local.set({
-    fbPages: FB_PAGES,
-    liPages: LI_PAGES,
+    fbPages: FB_PAGES.join(', '),
+    liPages: LI_PAGES.join(', '),
     lastLiked: null
   });
+});
+
+// Listen for storage changes from popup and update custom pages
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName === 'local') {
+    if (changes.fbPages) {
+      customFbPages = Array.isArray(changes.fbPages.newValue)
+        ? changes.fbPages.newValue
+        : changes.fbPages.newValue.split(',').map(s => s.trim());
+      console.log('Updated custom FB pages:', customFbPages);
+    }
+    if (changes.liPages) {
+      customLiPages = Array.isArray(changes.liPages.newValue)
+        ? changes.liPages.newValue
+        : changes.liPages.newValue.split(',').map(s => s.trim());
+      console.log('Updated custom LI pages:', customLiPages);
+    }
+  }
 });
 
 // Listen for alarms
@@ -88,16 +122,12 @@ function isTargetPage(url) {
   
   // Facebook pages
   if (url.includes('facebook.com')) {
-    if (url.includes('zaavia.net') || url.includes('61573834194646')) {
-      return true;
-    }
+    return customFbPages.some(id => url.includes(id));
   }
   
   // LinkedIn company pages
   if (url.includes('linkedin.com')) {
-    if (url.includes('/company/saerintechllc') || url.includes('/company/zaavia')) {
-      return true;
-    }
+    return customLiPages.some(handle => url.includes(`/company/${handle}`));
   }
   
   // Instagram accounts
