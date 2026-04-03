@@ -5,10 +5,8 @@ Note: Please open each page intended for like, in seperate tab.
 ## Features
 
 - ✅ Auto-likes new posts from your company pages
-- ✅ Works in background tabs (no need to keep them open)
+- ✅ Works in background tabs(just keep each page open in background)
 - ✅ Smart reloading every 60 minutes to fetch fresh content
-- ✅ Prevents duplicate likes using post tracking
-- ✅ Human-like delays between actions
 
 ## Installation
 Note: If you do not have Git preinstalled, please run this in your system's Command Prompt: winget install --id Git.Git -e --source winget
