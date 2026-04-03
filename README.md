@@ -1,7 +1,7 @@
 # Company Post Liker
 
 Chrome extension to automatically like posts from your company pages on **Facebook** and **LinkedIn** - even when tabs are in the background.
-
+Note: Please open each page intended for like, in seperate tab.
 ## Features
 
 - ✅ Auto-likes new posts from your company pages
@@ -19,12 +19,10 @@ Note: If you do not have Git preinstalled, please run this in your system's Comm
 
 ## Configuration
 
-Edit `background.js`:
-
-```javascript
-const FB_PAGES = ["page_id_1", "page_id_2"];
-const LI_PAGES = ["company-name-1", "company-name-2"];
-```
+Edit Facebook or Linkedin page:
+1. Click on Puzzle logo on Google Chrome app bar.
+2. Click on the extension: Company Post Liker.
+3. Add or remove page id of Facebook or Linkedin.
 
 **How to find IDs:**
 - Facebook: `facebook.com/YOUR_PAGE_ID`
