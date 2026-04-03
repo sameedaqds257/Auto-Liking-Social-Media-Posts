@@ -75,6 +75,60 @@
     .settings button:hover {
       background: #166fe5;
     }
+    .page-list {
+      margin-bottom: 15px;
+    }
+    .page-item {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      border: 1px solid #e9ecef;
+    }
+    .page-item input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+    }
+    .page-item button {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 20px;
+      margin-left: 8px;
+    }
+    .page-item button:hover {
+      background: #c82333;
+    }
+    .add-section {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .add-section input {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-right: 8px;
+    }
+    .add-section button {
+      padding: 6px 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .add-section button:hover {
+      background: #218838;
+    }
   </style>
 </head>
 <body>
@@ -86,15 +140,26 @@
   </div>
 
   <div class="settings">
-    <h4>Customize Pages</h4>
-    <label for="fb-pages">Facebook Page IDs (comma-separated):</label>
-    <input type="text" id="fb-pages" placeholder="e.g., 61573834194646, zaavia.net">
+    <h4>Manage Facebook Pages</h4>
+    <div id="fb-list" class="page-list">
+      <!-- FB pages will be listed here -->
+    </div>
+    <div class="add-section">
+      <input type="text" id="fb-add" placeholder="Add Facebook page ID (e.g., 123456)">
+      <button id="fb-add-btn">+ Add</button>
+    </div>
     
-    <label for="li-pages">LinkedIn Company Handles (comma-separated):</label>
-    <input type="text" id="li-pages" placeholder="e.g., saerintechllc, zaavia">
+    <h4>Manage LinkedIn Companies</h4>
+    <div id="li-list" class="page-list">
+      <!-- LI companies will be listed here -->
+    </div>
+    <div class="add-section">
+      <input type="text" id="li-add" placeholder="Add LinkedIn company handle (e.g., microsoft)">
+      <button id="li-add-btn">+ Add</button>
+    </div>
     
-    <button id="save-settings">Save Settings</button>
-    <div id="save-message" style="margin-top: 10px; color: green; display: none;">Settings saved!</div>
+    <button id="save-settings" style="margin-top: 15px; width: 100%;">Save All Changes</button>
+    <div id="save-message" style="margin-top: 10px; color: green; display: none;">✅ Settings saved successfully!</div>
   </div>
 
   <div class="platform-info">
@@ -116,47 +181,6 @@
     <!-- Last liked info will be inserted here -->
   </div>
 
-  <script>
-    // Load current settings and display
-    chrome.storage.local.get(['fbPages', 'liPages'], (result) => {
-      document.getElementById('fb-pages').value = result.fbPages || '61573834194646, zaavia.net';
-      document.getElementById('li-pages').value = result.liPages || 'saerintechllc, zaavia';
-      updateCurrentDisplay(result.fbPages, result.liPages);
-    });
-
-    // Load last liked
-    chrome.storage.local.get(['lastLiked'], (result) => {
-      const statsDiv = document.getElementById('stats');
-      if (result.lastLiked) {
-        const likedDate = new Date(result.lastLiked);
-        statsDiv.innerHTML = 
-          `⏱️ Last liked:<br>${likedDate.toLocaleString()}`;
-      } else {
-        statsDiv.innerHTML = '⏱️ No posts liked yet';
-      }
-    });
-
-    // Save settings
-    document.getElementById('save-settings').addEventListener('click', () => {
-      const fbPages = document.getElementById('fb-pages').value.trim();
-      const liPages = document.getElementById('li-pages').value.trim();
-      
-      chrome.storage.local.set({
-        fbPages: fbPages,
-        liPages: liPages
-      }, () => {
-        updateCurrentDisplay(fbPages, liPages);
-        document.getElementById('save-message').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('save-message').style.display = 'none';
-        }, 2000);
-      });
-    });
-
-    function updateCurrentDisplay(fbPages, liPages) {
-      document.getElementById('fb-current').textContent = `Pages: ${fbPages || '61573834194646, zaavia.net'}`;
-      document.getElementById('li-current').textContent = `Companies: ${liPages || 'saerintechllc, zaavia'}`;
-    }
-  </script>
+  <script src="popup.js"></script>
 </body>
 </html>

@@ -54,9 +54,16 @@ function isCompanyPage() {
   return customCompanyPages.some(id => window.location.href.includes(id));
 }
 
+function getLinkedInCompanyFromUrl(url) {
+  const match = url.match(/linkedin\.com\/company\/([^\/?#]+)/i);
+  return match ? match[1].toLowerCase() : null;
+}
+
 function isLinkedInPage() {
-  return window.location.hostname.includes("linkedin.com") && 
-         customLiPages.some(page => window.location.href.includes(`/company/${page}`));
+  if (!window.location.hostname.includes("linkedin.com")) return false;
+  const company = getLinkedInCompanyFromUrl(window.location.href);
+  if (!company) return false;
+  return customLiPages.some(page => page && page.toLowerCase() === company);
 }
 
 function isInstagramPage() {
