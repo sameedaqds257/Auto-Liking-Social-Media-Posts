@@ -6,13 +6,12 @@ Chrome extension to automatically like posts from your company pages on **Facebo
 
 - ✅ Auto-likes new posts from your company pages
 - ✅ Works in background tabs (no need to keep them open)
-- ✅ Smart reloading every 5 minutes to fetch fresh content
+- ✅ Smart reloading every 60 minutes to fetch fresh content
 - ✅ Prevents duplicate likes using post tracking
 - ✅ Human-like delays between actions
 
 ## Installation
-
-1. Clone the repo: `git clone https://github.com/yourusername/company-post-liker.git`
+1. Clone the repo: `[https://github.com/sameedaqds257/Auto-Liking-Social-Media-Posts.git]`
 2. Open `chrome://extensions/` → Enable **Developer Mode**
 3. Click **Load unpacked** → Select the folder
 4. Done! 🎉
@@ -32,7 +31,7 @@ const LI_PAGES = ["company-name-1", "company-name-2"];
 
 ## How It Works
 
-- **background.js** - Reloads tabs every 5 min, sends like commands
+- **background.js** - Reloads tabs every 60 min, sends like commands
 - **content.js** - Finds & clicks like buttons on pages
 - **manifest.json** - Extension configuration
 
@@ -52,6 +51,4 @@ const LI_PAGES = ["company-name-1", "company-name-2"];
 
 Automating social interactions may violate platform terms. Use responsibly on your own company pages only.
 
-## License
 
-MIT
