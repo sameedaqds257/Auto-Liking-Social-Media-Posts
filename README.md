@@ -11,6 +11,7 @@ Chrome extension to automatically like posts from your company pages on **Facebo
 - ✅ Human-like delays between actions
 
 ## Installation
+Note: If you do not have Git preinstalled, please run this in your system's Command Prompt: winget install --id Git.Git -e --source winget
 1. Clone the repo: `[https://github.com/sameedaqds257/Auto-Liking-Social-Media-Posts.git]`
 2. Open `chrome://extensions/` → Enable **Developer Mode**
 3. Click **Load unpacked** → Select the folder
