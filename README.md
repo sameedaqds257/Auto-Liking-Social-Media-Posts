@@ -32,7 +32,7 @@ const LI_PAGES = ["company-name-1", "company-name-2"];
 
 ## How It Works
 
-- **background.js** - Reloads tabs every 5 min, sends like commands
+- **background.js** - Reloads tabs every 60 min, sends like commands
 - **content.js** - Finds & clicks like buttons on pages
 - **manifest.json** - Extension configuration
 
