@@ -11,8 +11,7 @@ Chrome extension to automatically like posts from your company pages on **Facebo
 - ✅ Human-like delays between actions
 
 ## Installation
-
-1. Clone the repo: `git clone https://github.com/yourusername/company-post-liker.git`
+1. Clone the repo: `[https://github.com/sameedaqds257/Auto-Liking-Social-Media-Posts.git]`
 2. Open `chrome://extensions/` → Enable **Developer Mode**
 3. Click **Load unpacked** → Select the folder
 4. Done! 🎉
