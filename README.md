@@ -6,7 +6,7 @@ Chrome extension to automatically like posts from your company pages on **Facebo
 
 - ✅ Auto-likes new posts from your company pages
 - ✅ Works in background tabs (no need to keep them open)
-- ✅ Smart reloading every 120 minutes to fetch fresh content
+- ✅ Smart reloading every 60 minutes to fetch fresh content
 - ✅ Prevents duplicate likes using post tracking
 - ✅ Human-like delays between actions
 
