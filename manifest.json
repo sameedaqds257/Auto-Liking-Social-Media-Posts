@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Company Post Liker",
+  "name": "LikePilot",
   "version": "1.0",
   "description": "Automatically likes company posts on Facebook, LinkedIn, and Instagram",
   "permissions": [
