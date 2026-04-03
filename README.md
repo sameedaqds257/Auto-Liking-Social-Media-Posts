@@ -52,6 +52,4 @@ const LI_PAGES = ["company-name-1", "company-name-2"];
 
 Automating social interactions may violate platform terms. Use responsibly on your own company pages only.
 
-## License
 
-MIT
