@@ -1,8 +1,8 @@
 
 const FB_PAGES = ["61573834194646", "zaavia.net"];
 const LI_PAGES = ["saerintechllc", "zaavia"];
-const CHECK_INTERVAL = 120; // in minutes
-const RELOAD_INTERVAL = 120; // in minutes
+const CHECK_INTERVAL = 60; // in minutes
+const RELOAD_INTERVAL = 60; // in minutes
 
 let lastReloadTimes = {}; // Track reload times per tab
 let customFbPages = FB_PAGES;
